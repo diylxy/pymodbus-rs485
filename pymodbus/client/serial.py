@@ -237,6 +237,10 @@ class ModbusSerialClient(ModbusBaseSyncClient):
                 exclusive=True,
             )
             self.socket.inter_byte_timeout = self.inter_byte_timeout
+            self.socket.rs485_mode = serial.rs485.RS485Settings(
+                rts_level_for_tx=True,
+                rts_level_for_rx=False
+            )
         # except serial.SerialException as msg:
         # pyserial raises undocumented exceptions like termios
         except Exception as msg:  # pylint: disable=broad-exception-caught

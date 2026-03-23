@@ -35,6 +35,10 @@ class SerialTransport(asyncio.Transport):
         self._poll_wait_time = 0.0005
         self.sync_serial.timeout = 0
         self.sync_serial.write_timeout = 0
+        self.sync_serial.rs485_mode = serial.rs485.RS485Settings(
+            rts_level_for_tx=True,
+            rts_level_for_rx=False
+        )
 
     def setup(self) -> None:
         """Prepare to read/write."""
